@@ -19,7 +19,10 @@ gulp --production
 
 ## cd root & copy files
 cd ../../../
-cp -R git/web/WEBSITE/public .
+cp -R git/web/WEBSITE/public/* .
+
+## remove .gitignore
+rm img/.gitignore
 
 ## remove useless
 rm -Rf api
