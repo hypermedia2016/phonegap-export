@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>index</title>
+    <!--css-->
+    <link href="http://localhost:8000/css/app-less.css" rel="stylesheet">
+    <link href="http://localhost:8000/css/app-sass.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--main menu-->
+    <ul id="main">
+          <li><a href="http://localhost:8000/devices.html">Devices</a></li>
+          <li><a href="http://localhost:8000/smart-life.html">Smart life services</a></li>
+          <li><a href="http://localhost:8000/assistance.html">Assistance</a></li>
+    </ul>
+    <!--location menu-->
+    <ul>
+      <li v-for="location in locations"><a v-bind:href="location.url">{{ location.name }}</a></li>
+    </ul>
+    <index inline-template v-bind:locations.sync="locations">
+      <!--sub menu-->
+      <ul id="sub">
+              <li><a href="http://localhost:8000/devices.html">Devices</a></li>
+              <li><a href="http://localhost:8000/smart-life.html">Smart life services</a></li>
+              <li><a href="http://localhost:8000/assistance.html">Assistance</a></li>
+      </ul>
+      <h2>Devices in promotion</h2>
+      <p>images...</p>
+      <h2>Smart life services</h2>
+      <p>images...</p>
+      <h2>How can we help you</h2>
+      <p>images...</p>
+    </index>
+  </body>
+</html>
+<!-- javascript-->
+<script src="http://localhost:8000/js/app.js"></script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>devices</title>
+    <!--css-->
+    <link href="http://localhost:8000/css/app-less.css" rel="stylesheet">
+    <link href="http://localhost:8000/css/app-sass.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--main menu-->
+    <ul id="main">
+          <li><a href="http://localhost:8000/devices.html">Devices</a></li>
+          <li><a href="http://localhost:8000/smart-life.html">Smart life services</a></li>
+          <li><a href="http://localhost:8000/assistance.html">Assistance</a></li>
+    </ul>
+    <!--location menu-->
+    <ul>
+      <li v-for="location in locations"><a v-bind:href="location.url">{{ location.name }}</a></li>
+    </ul>
+    <devices inline-template v-bind:locations.sync="locations">
+      <div class="container">
+        <!--sub menu-->
+        <ul class="nav nav-tabs" id="sub">
+          <li v-for="type in types"><a v-bind:href="type.url" data-toggle="tab">{{type.name}}</a></li>
+        </ul>
+        <div class="error">{{ error }}</div>
+        <div class="tab-content">
+          <div class="tab-pane fade" v-bind:id="type.name.toLowerCase()" v-for="type in types">
+            <p>{{type.name}}</p>
+            <div class="filters">
+              <ul>
+                <li v-for="(filtersKey, filters) in content.filters">
+                  <div v-if="filters != null">Filter by {{filtersKey}}
+                    <ul>
+                      <li v-for="filter in filters"><a v-on:click="filterClicked(filter, filtersKey, $event)" href="#">{{filterText(filter, filtersKey)}}</a></li>
+                    </ul>
+                  </div>
+                  <div v-else="v-else"><a v-on:click="specialFilterClicked(filtersKey, $event)" href="#">{{filtersKey}}</a></div>
+                </li>
+              </ul>
+            </div>
+            <div class="devices">
+              <ul>
+                <li v-for="device in devicesFiltered">{{device.name}} {{device.price}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </devices>
+  </body>
+</html>
+<!-- javascript-->
+<script src="http://localhost:8000/js/app.js"></script>
