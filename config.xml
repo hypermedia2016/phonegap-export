@@ -27,5 +27,4 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
-    <allow-navigation href = "http://hypermedia.thecsea.it/*" />
 </widget>
