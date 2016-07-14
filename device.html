@@ -6,27 +6,29 @@
     <link href="css/app-less.css" rel="stylesheet">
     <link href="css/app-sass.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *">
   </head>
   <body>
     <!--head menu-->
-    <nav class="container app-nav__top-nav">
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="list-inline list-unstyled" id="head-menui">
-                <li><a href="who-we-are.html">Who we are</a></li>
-                <li><a href="the-group.html">The group</a></li>
-          </ul>
+    <nav class="top-nav">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-inline list-unstyled" id="head-menui">
+                  <li><a href="who-we-are.html">Who we are </a></li>
+                  <li><a href="the-group.html">The group</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
-    <!--main menu-->
-    <nav class="navbar">
+    <!--main menu--><br>
+    <nav class="navbar top-middle-nav">
       <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpg" alt="Verizon"></a></div>
+        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a></div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav" id="main-menu">
+          <ul class="nav navbar-nav">
                 <li class="selected"><a href="devices.html">Devices</a></li>
                 <li><a href="services.html">Smart life services</a></li>
                 <li><a href="assistance.html">Assistance</a></li>
@@ -48,9 +50,10 @@
       <div class="error">{{ error }}</div>
       <div class="container">
         <div class="row">
-          <div class="col-md-6 text-right"><img class="app-device__head__img" src="img/static/samsung1-hero.png"></div>
+          <div class="col-md-6 text-right"><img class="app-device__head__img" v-bind:src="parsedData.img[0]"></div>
           <div class="col-md-6">
-            <h2 class="app-device__head__title">{{parsedData.name}}</h2>
+            <h4 class="app-device__head__title">{{parsedData.brand}}</h4>
+            <h3 class="app-device__head__title">{{parsedData.name}}</h3>
             <p class="app-device__head__desc">{{parsedData.short_description}}</p>
             <h3 class="app-device__head__price">{{parsedData.price}} &euro;</h3><br>
             <div class="app-device__head__services">
@@ -76,7 +79,7 @@
         <div class="row" id="presentation">
           <div class="col-md-12 app-device__content">
             <div class="row app-device__content__section" v-for="(index,section) in presentationSections">
-              <div class="col-md-6 text-center"><img class="app-device__content__section__img" v-bind:src="'img/static/samsung1-pres-'+(index+1)+'.jpeg'"></div>
+              <div class="col-md-6 text-center"><img class="app-device__content__section__img" v-bind:src="section.image"></div>
               <div class="col-md-6">
                 <h2 class="app-device__content__section__title">{{section.title}}</h2>
                 <p class="app-device__content__section__text">{{section.content}}</p>
@@ -100,7 +103,7 @@
         </div>
       </div>
     </device>
-    <!-- javascript-->
+    <!-- javascript--><br><br>
     <script src="js/app.js"></script>
   </body>
 </html>
