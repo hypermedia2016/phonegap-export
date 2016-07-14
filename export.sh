@@ -24,7 +24,7 @@ cp -R git/web/WEBSITE/public/* .
 
 ## remove useless
 rm -Rf api
-rm -Rf img/static
+rm -Rf img/dynamic
 
 ## done
 echo "Export executed, check if programs called have generated errors"
