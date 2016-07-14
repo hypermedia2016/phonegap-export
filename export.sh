@@ -19,6 +19,7 @@ gulp --production
 
 ## cd root & copy files
 cd ../../../
+rm -rf img
 cp -R git/web/WEBSITE/public/* .
 
 
