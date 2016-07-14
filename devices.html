@@ -24,7 +24,7 @@
     <!--main menu-->
     <nav class="navbar">
       <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/app-logo.jpg" alt="Verizon"></a></div>
+        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpg" alt="Verizon"></a></div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" id="main-menu">
                 <li class="selected"><a href="devices.html">Devices</a></li>
@@ -50,7 +50,7 @@
         <div class="row">
           <div class="col-md-12">
             <ul class="nav nav-tabs app-home__principal-links app-devices-nav" id="sub">
-              <li class="app-home__principal-link" v-for="type in types"><a class="app-home__principal-link--img-link" v-bind:href="type.url" data-toggle="tab"><img class="app-home__principal-link--img" v-bind:src="'img/'+type.name+'-icon.jpg'"><span class="app-home__principal-link--text">{{type.name}}</span></a></li>
+              <li class="app-home__principal-link" v-for="type in types"><a class="app-home__principal-link--img-link" v-bind:href="type.url" data-toggle="tab"><img class="app-home__principal-link--img" v-bind:src="'img/static/'+type.name+'-icon.jpg'"><span class="app-home__principal-link--text">{{type.name}}</span></a></li>
             </ul>
           </div>
         </div>
