@@ -24,4 +24,6 @@
     <preference name="permissions"                value="none"/>
     
     <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
 </widget>
