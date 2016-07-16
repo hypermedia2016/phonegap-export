@@ -7,7 +7,7 @@
     <link href="css/app-sass.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *">
+    <!--meta(http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *")-->
   </head>
   <body>
     <!--head menu-->
@@ -56,7 +56,7 @@
             </ul>
           </div>
         </div>
-        <!--div(class="error") {{ error }}--><br><br>
+        <!--div(class="error") {{ error }}--><br><br><br><br>
         <div class="row">
           <div class="col-md-12 text-center app-devices__filters">
             <ul class="list-unstyled list-inline">
@@ -71,22 +71,34 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div><br><br>
         <div class="row">
           <div class="col-md-12">
             <div class="tab-content">
               <div class="tab-pane fade row" v-bind:id="type.name.toLowerCase()" v-for="type in types">
                 <div class="col-md-12">
-                  <div class="col-md-4" v-for="device in devicesFiltered"><a class="app-devices__device text-center" v-bind:href="'device.html#'+device.id"><img/>
+                  <div class="col-md-4" v-for="device in devicesFiltered"><a class="app-devices__device text-center" v-bind:href="'device.html#'+device.id"><img v-bind:src="device.img[0]"/>
+                      <h4 class="app-devices__device-brand">{{device.brand}}</h4>
                       <h4>{{device.name}}</h4>
                       <ul class="list-unstyled">
                         <li>sadsada</li>
+                      </ul><br/>
+                      <ul class="list-unstyled list-inline">
+                        <li><span class="app-devices__device-color-label">COLORS&nbsp;&nbsp;</span></li>
+                        <li>
+                          <ul class="list-unstyled list-inline">
+                            <li v-for="color in device.colors"><span v-bind:style="'background-color:'+color+'; width: 20px; height: 20px; display:block; border: 1px solid rgba(0,0,0,.2)'">&nbsp;</span></li>
+                          </ul>
+                        </li>
                       </ul>
-                      <div>dasdsa</div>
-                      <h4>{{device.price}}</h4></a>
-                    <ul class="list-unstyled">
-                      <li v-for="device in devicesFiltered"><a v-bind:href="'device.html#'+device.id">{{device.name}} {{device.price}}</a></li>
-                    </ul>
+                      <h3>{{device.price}}&euro;</h3>
+                      <ul v-for="desc in device.list_desc">
+                        <li>{{desc}}</li>
+                      </ul></a>
+                    <!--ul.list-unstyled
+                    li(v-for="device in devicesFiltered")
+                        a("v-bind:href"="'device.html#'+device.id") {{device.name}} {{device.price}}
+                    -->
                   </div>
                 </div>
               </div>

@@ -7,7 +7,7 @@
     <link href="css/app-sass.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *">
+    <!--meta(http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *")-->
   </head>
   <body>
     <!--head menu-->
@@ -17,7 +17,7 @@
           <div class="col-md-12">
             <ul class="list-inline list-unstyled" id="head-menui">
                   <li><a href="who-we-are.html">Who we are </a></li>
-                  <li class="selected"><a href="the-group.html">The group</a></li>
+                  <li><a href="the-group.html">The group</a></li>
             </ul>
           </div>
         </div>
@@ -29,9 +29,9 @@
         <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a></div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-                <li><a href="devices.html">Devices</a></li>
-                <li><a href="services.html">Smart life services</a></li>
-                <li><a href="assistance.html">Assistance</a></li>
+                <li><a href="investors.html">For investors</a></li>
+                <li><a href="business.html">Business&amp;Markets</a></li>
+                <li><a href="governance.html">Governance</a></li>
           </ul>
         </div>
       </div>
@@ -39,21 +39,84 @@
     <!--location menu-->
     <the-group inline-template v-bind:locations.sync="locations">
       <div class="container">
-        <!--sub menu-->
-        <ul class="nav nav-tabs" id="sub">
-          <li class="active"><a href="#investors" data-toggle="tab">For investors</a></li>
-          <li><a href="#business-markets" data-toggle="tab">Business &amp; Markets</a></li>
-          <li><a href="#governance" data-toggle="tab">Governance</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane fade active in" id="investors">
-            <p>For investors content</p>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-unstyled list-inline app-breadcrumb app-breadcrumb--ligth">
+              <li class="app-breadcrumb__item"><a class="app-breadcrumb__text" href="index.html"><i class="material-icons app-breadcrumb__separator">home</i></a><i class="material-icons app-breadcrumb__separator">chevron_right</i></li>
+              <li class="app-breadcrumb__item"><a class="app-breadcrumb__text" href="/the-group.html">The group</a>
+              </li>
+            </ul>
           </div>
-          <div class="tab-pane fade" id="business-markets">
-            <p>Business & Markets content</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12 app-group__news">
+            <div class="row">
+              <div class="col-md-2 app-group__news-label">
+                <h3>News</h3>
+              </div>
+              <div class="col-md-10">
+                <ul class="list-inline list-unstyled" v-for="news_item in news">
+                  <li>{{news_item.date}} {{news_item.content}}</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="tab-pane fade" id="governance">
-            <p>Governance content</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12 app-group__hero">
+            <h2 class="text-center">We are problem-solvers, engineers, technologists and innovators. Every day, we connect millions of people, companies and communities with our powerful technology.</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center app-group__group-desc">
+              <h2>The group at glance</h2>
+              <p>Verizon is one of the biggest group in the telecommunication market. With more than 20 years of activities in the US and in Europe it innovates and produce value for customers and communities like anyone</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <ul class="list-inline list-unstyled app-group__features">
+              <li>
+                <div class="app-group__feature text-center"><img src="img/static/customers.png">
+                  <p>Customers</p>
+                  <p>50 Millions</p>
+                </div>
+              </li>
+              <li>
+                <div class="app-group__feature text-center"><img src="img/static/ic_store_mall_directory.png">
+                  <p>Retail stores</p>
+                  <p>3000</p>
+                </div>
+              </li>
+              <li>
+                <div class="app-group__feature text-center"><img src="img/static/ic_public.png">
+                  <p>Countries</p>
+                  <p>90</p>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-inline list-unstyled app-group__features">
+              <li>
+                <div class="app-group__feature text-center"><img src="img/static/ic_settings_input_antenna.png">
+                  <p>Global network</p>
+                  <p>800,000 miles</p>
+                </div>
+              </li>
+              <li>
+                <div class="app-group__feature text-center"><img src="img/static/ic_local_atm.png">
+                  <p>Revenues</p>
+                  <p>100 mld of $</p>
+                </div>
+              </li>
+              <li>
+                <div class="app-group__feature text-center"><img src="img/static/ic_star.png">
+                  <p>Investments</p>
+                  <p>1 mld of $</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

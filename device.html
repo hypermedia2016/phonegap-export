@@ -7,7 +7,7 @@
     <link href="css/app-sass.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *">
+    <!--meta(http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *")-->
   </head>
   <body>
     <!--head menu-->
@@ -50,55 +50,105 @@
       <div class="error">{{ error }}</div>
       <div class="container">
         <div class="row">
-          <div class="col-md-6 text-right"><img class="app-device__head__img" v-bind:src="parsedData.img[0]"></div>
+          <div class="col-md-6 text-right"><img class="app-device__head-img" v-bind:src="parsedData.img[0]">
+            <ul class="list-unstyled list-inline app-device__head-miniatures text-center">
+              <li><img v-bind:src="parsedData.img[0]"></li>
+              <li><img v-bind:src="parsedData.img[1]"></li>
+            </ul>
+          </div>
           <div class="col-md-6">
-            <h4 class="app-device__head__title">{{parsedData.brand}}</h4>
-            <h3 class="app-device__head__title">{{parsedData.name}}</h3>
-            <p class="app-device__head__desc">{{parsedData.short_description}}</p>
-            <h3 class="app-device__head__price">{{parsedData.price}} &euro;</h3><br>
-            <div class="app-device__head__services">
-              <h3 class="app-device__head__services__headline">Associated services</h3>
-              <ul class="list-unstyled">
-                <li><a class="app-device__head__services__link" href="/dfdf">Verizon next<i class="material-icons">chevron_right</i></a></li>
-              </ul>
-            </div><br>
-            <div>
-              <button class="app-device__head__btn">BUY</button>
+            <h4>{{parsedData.brand}}</h4>
+            <h3>{{parsedData.name}}</h3>
+            <p class="app-device__head-desc">{{parsedData.short_description}}</p>
+            <ul class="list-unstyled list-inline">
+              <li>
+                <h3 class="app-device__head-price">{{parsedData.price}} &euro;</h3>
+              </li>
+              <li class="app-device__head-colors">
+                <ul class="list-unstyled list-inline">
+                  <li v-for="color in parsedData.colors"><span v-bind:style="'background-color:'+color+'; width: 20px; height:20px; display: block'">&nbsp;</span></li>
+                </ul>
+              </li>
+            </ul>
+            <button class="app-button app-button--big">BUY</button>
+            <div class="app-device__head-links">
+              <h5>Smartlife services</h5>
+              <p data-toggle="modal" data-target="#smartlife"><i class="material-icons">chevron_right</i>Discover addable smartlife services</p>
+            </div>
+            <div class="app-device__head-links">
+              <h5>Assistance</h5>
+              <p data-toggle="modal" data-target="#assistance"><i class="material-icons">chevron_right</i>Get assistance for this device</p>
             </div>
           </div>
-        </div><br><br>
+        </div><br><br><br><br>
         <div class="row">
-          <div class="col-md-12">
-            <ul class="list-unstyled list-inline app-device__content-nav">
-              <li class="selected">Presentation</li>
-              <li>Specifications</li>
-              <li>Assistance</li>
+          <div class="col-md-12 text-center">
+            <ul class="list-unstyled list-inline app-device__content-nav" role="tab-list">
+              <li class="active" role="presentation"><a href="#presentation" role="tab" data-toggle="tab">Presentation</a></li>
+              <li role="presentation"><a href="#specs" role="tab" data-toggle="tab">Specifications</a></li>
             </ul>
           </div>
         </div><br><br>
-        <div class="row" id="presentation">
-          <div class="col-md-12 app-device__content">
-            <div class="row app-device__content__section" v-for="(index,section) in presentationSections">
-              <div class="col-md-6 text-center"><img class="app-device__content__section__img" v-bind:src="section.image"></div>
-              <div class="col-md-6">
-                <h2 class="app-device__content__section__title">{{section.title}}</h2>
-                <p class="app-device__content__section__text">{{section.content}}</p>
+        <div class="tab-content">
+          <div class="row tab-pane active fade in" id="presentation" role="tabpanel">
+            <div class="col-md-12">
+              <div class="row" v-for="(index,section) in presentationSections" v-bind:class="{'app-device__section': true, 'app-device__section--type-one':index===1, 'app-device__section--type-two':index===2}">
+                <div class="col-md-6 text-center" v-if="index===0 || index ===2"><img class="app-device__section-img" v-bind:src="section.image"></div>
+                <div class="col-md-6" v-bind:class="{'text-right':index===1}">
+                  <div class="app-device__section-text">
+                    <h2>{{section.title}}</h2>
+                    <p>{{section.content}}</p>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center" v-if="index===1"><img class="app-device__section-img" v-bind:src="section.image"></div>
               </div>
             </div>
           </div>
+          <div class="row tab-pane fade" id="specs" role="tabpanel">
+            <div class="col-md-12">
+              <h2 class="app-device__specs-heading"> Specifications</h2>
+              <table class="table app-device__specs-table">
+                <thead></thead>
+                <tbody>
+                  <tr v-for="spec in specs">
+                    <td>{{spec.title}}</td>
+                    <td>{{spec.content}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        <div class="row" id="specs">
-          <div class="col-md-12">
-            <h2 class="app-device__content__specs__heading"> Specifications</h2>
-            <table class="table app-device__content__specs__table">
-              <thead></thead>
-              <tbody>
-                <tr v-for="spec in specs">
-                  <td>{{spec.title}}</td>
-                  <td>{{spec.content}}</td>
-                </tr>
-              </tbody>
-            </table>
+      </div>
+      <div class="modal fade" tabindex="-1" role="dialog" id="smartlife">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span class="material-icons" aria-hidden="true">clear</span></button>
+              <h4 class="app-modal__pre">{{parsedData.brand+' '+parsedData.name}}</h4>
+              <h3 class="app-modal__title">Addable Smartlife Services</h3>
+            </div>
+            <div class="modal-body">
+              <ul class="list-unstyled app-modal__items">
+                <li v-for="service in services"><a class="clearfix" v-bind:href="'service.html#'+service.id"><span>{{service.name}}</span><i class="material-icons">chevron_right</i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" tabindex="-1" role="dialog" id="assistance">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span class="material-icons" aria-hidden="true">clear</span></button>
+              <h4 class="app-modal__pre">{{parsedData.brand+' '+parsedData.name}}</h4>
+              <h3 class="app-modal__title">Assistance</h3>
+            </div>
+            <div class="modal-body">
+              <ul class="list-unstyled app-modal__items">
+                <li v-for="assistance_item in assistance"><a class="clearfix" v-bind:href="'assistance-details.html#'+assistance_item.id"><span>{{assistance_item.name}}</span><i class="material-icons">chevron_right</i></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

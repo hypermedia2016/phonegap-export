@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Smart life services</title>
+    <title>The group</title>
     <!--css-->
     <link href="css/app-less.css" rel="stylesheet">
     <link href="css/app-sass.css" rel="stylesheet">
@@ -29,9 +29,9 @@
         <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a></div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-                <li><a href="devices.html">Devices</a></li>
-                <li class="selected"><a href="services.html">Smart life services</a></li>
-                <li><a href="assistance.html">Assistance</a></li>
+                <li><a href="investors.html">For investors</a></li>
+                <li><a href="business.html">Business&amp;Markets</a></li>
+                <li><a href="governance.html">Governance</a></li>
           </ul>
         </div>
       </div>
@@ -46,24 +46,64 @@
         </div>
       </div>
     </nav>
-    <services inline-template v-bind:locations.sync="locations">
+    <the-group inline-template v-bind:locations.sync="locations">
       <div class="container">
-        <!--sub menu-->
-        <ul class="nav nav-tabs app-home__principal-links app-devices-nav" id="sub">
-          <li class="app-home__principal-link" v-for="type in types"><a class="app-home__principal-link--img-link" v-bind:href="type.url" data-toggle="tab"><img class="app-home__principal-link--img" v-bind:src="type.img"><span class="app-home__principal-link--text">{{type.name}}</span></a></li>
-        </ul>
-        <div class="error">{{ error }}</div>
-        <div class="tab-content">
-          <div class="tab-pane fade" v-bind:id="escapeName(type.name)" v-for="type in types">
-            <div class="services">
-              <ul>
-                <li v-for="service in services"><a v-bind:href="'service.html#'+service.id">{{service.name}} {{service.short_description}}<img v-bind:src="service.img"/></a></li>
-              </ul>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-inline list-unstyled">
+              <li><span>News</span></li>
+              <li>
+                <ul class="list-inline list-unstyled">
+                  <li>sadasdas</li>
+                  <li>sdasd</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <h2>sdjhdkjashdkjahskdjh</h2>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h2>sajkjdlsajd</h2>
+              <p>ssddasdasd</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-inline list-unstyled">
+              <li>
+                <div>dasdasd</div>
+              </li>
+              <li>
+                <div>sadasdas</div>
+              </li>
+              <li>
+                <div>sdasdasd</div>
+              </li>
+            </ul>
+            <ul class="list-inline list-unstyled">
+              <li>
+                <div>dasdasd</div>
+              </li>
+              <li>
+                <div>sadasdas</div>
+              </li>
+              <li>
+                <div>sdasdasd</div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </services>
+    </the-group>
     <!-- javascript--><br><br>
     <script src="js/app.js"></script>
   </body>
