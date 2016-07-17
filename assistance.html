@@ -69,10 +69,10 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td v-for="(index,frequent) in frequents" v-if="index &lt; 3"><a v-bind:href="'/assistance-details.html#'+frequent.id">{{frequent.name}}</a></td>
+                    <td v-for="(index,frequent) in frequents" v-if="index &lt; 3"><a v-bind:href="'assistance-details.html#'+frequent.id">{{frequent.name}}</a></td>
                   </tr>
                   <tr>
-                    <td v-for="(index,frequent) in frequents" v-if="index &gt; 2"><a v-bind:href="'/assistance-details.html#'+frequent.id">{{frequent.name}}</a></td>
+                    <td v-for="(index,frequent) in frequents" v-if="index &gt; 2"><a v-bind:href="'assistance-details.html#'+frequent.id">{{frequent.name}}</a></td>
                   </tr>
                 </tbody>
               </table>
