@@ -46,17 +46,28 @@
           </ul>
         </div>
       </div>
-    </nav><br>
+    </nav>
     <devices inline-template v-bind:locations.sync="locations">
       <div class="container">
-        <!--sub menu-->
+        <!--sub menu--><br><br>
         <div class="row">
           <div class="col-md-12">
-            <ul class="nav nav-tabs app-home__principal-links app-devices-nav" id="sub">
-              <li class="app-home__principal-link app-home__principal-link--special" v-for="type in types"><a class="app-home__principal-link--img-link row" v-bind:href="type.url" data-toggle="tab" style="padding:0">
-                  <div class="col-md-12 col-sm-12 col-xs-6"><img class="app-home__principal-link--img" v-bind:src="type.img"></div>
-                  <div class="col-md-12 col-sm-12 col-xs-6"><span class="app-home__principal-link--text" style="padding:0">{{type.name}}</span></div></a></li>
+            <ul class="list-inline list-unstyled subsection-nav subsection-nav--big nav nav-tabs">
+              <li v-for="type in types"><a class="row" v-bind:href="type.url" data-toggle="tab">
+                  <div class="col-md-12 col-xs-6 col-sm-12"><img v-bind:src="type.img"></div>
+                  <div class="col-md-12 col-xs-6 col-sm-12">
+                    <p>{{type.name}}</p>
+                  </div></a></li>
             </ul>
+            <!--ul(class="nav nav-tabs app-home__principal-links app-devices-nav")#sub
+            li(v-for="type in types", class="app-home__principal-link app-home__principal-link--special")
+                a("v-bind:href"="type.url" data-toggle="tab" class="app-home__principal-link--img-link row" style="padding:0")
+                    .col-md-12.col-sm-12.col-xs-6
+                        img("v-bind:src"="type.img", class="app-home__principal-link--img" )
+                    .col-md-12.col-sm-12.col-xs-6
+                        span(class="app-home__principal-link--text" style="padding:0") {{type.name}}
+            
+            -->
           </div>
         </div>
         <!--div(class="error") {{ error }}--><br><br><br><br>

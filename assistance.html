@@ -49,18 +49,45 @@
     </nav>
     <assistance inline-template v-bind:locations.sync="locations">
       <div class="container">
-        <!--sub menu-->
-        <ul class="nav nav-tabs" id="sub">
-          <li v-for="type in types"><a v-bind:href="type.url" data-toggle="tab">{{type.name}}</a></li>
-        </ul>
-        <div class="error">{{ error }}</div>
-        <div class="tab-content">
-          <div class="tab-pane fade" v-bind:id="escapeName(type.name)" v-for="type in types">
-            <p>{{type.name}}</p>
-            <div class="assistance">
-              <ul>
-                <li v-for="assistanceItem in assistance"><a v-bind:href="'assistance-details.html#'+assistanceItem.id">{{assistanceItem.name}}</a></li>
-              </ul>
+        <div v-show="home"><br><br>
+          <ul class="list-inline list-unstyled subsection-nav nav nav-tabs">
+            <li v-for="type in types"><a class="row" v-bind:href="type.url" data-toggle="tab">
+                <div class="col-md-12 col-xs-6 col-sm-12"><img v-bind:src="type.img"></div>
+                <div class="col-md-12 col-xs-6 col-sm-12">
+                  <p>{{type.name}}</p>
+                </div></a></li>
+          </ul>
+          <div class="error">{{ error }}</div><br><br><br><br>
+          <div class="app-assistance__frequent row" v-show="home">
+            <div class="col-md-12">
+              <h4>FREQUENT ASSISTANCE SERVICES</h4>
+              <table>
+                <thead>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td v-for="(index,frequent) in frequents" v-if="index &lt; 3"><a v-bind:href="'/assistance-details.html#'+frequent.id">{{frequent.name}}</a></td>
+                  </tr>
+                  <tr>
+                    <td v-for="(index,frequent) in frequents" v-if="index &gt; 2"><a v-bind:href="'/assistance-details.html#'+frequent.id">{{frequent.name}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" v-show="!home">
+          <div class="tab-pane fade row" v-bind:id="escapeName(type.name)" v-for="type in types"><br/><br/>
+            <div class="col-md-8 col-md-offset-2"><img v-bind:src="type.img"/>
+              <h3>{{type.name}}</h3>
+              <div class="app-assistance__list-services">
+                <ul class="list-unstyled">
+                  <li v-for="assistanceItem in assistance"><a v-bind:href="'assistance-details.html#'+assistanceItem.id">{{assistanceItem.name}}<i class="material-icons">chevron_right</i></a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

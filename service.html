@@ -52,7 +52,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12"><img class="app-service__img" v-bind:src="'img/dynamic/'+parsedData.img">
-            <div class="app-service__head text-center">
+            <div class="app-service__head text-center" v-bind:class="{'app-services__text--centered' : (service.img_tag==='2'), 'app-services__text--right':(service.img_tag==='3')}">
               <h2>{{parsedData.name}}</h2>
               <p>{{parsedData.short_description}}</p>
               <h2 class="red-colored">{{parsedData.price}}&nbsp;&euro;&nbsp;/&nbsp;month</h2>
@@ -64,8 +64,8 @@
           <div class="col-md-12 text-center">
             <ul class="list-unstyled list-inline app-device__content-nav app-investors__nav" role="tab-list">
               <li class="active" role="presentation"><a href="#presentation" role="tab" data-toggle="tab">Presentation</a></li>
-              <li role="presentation"><a href="#performance" role="tab" data-toggle="tab">Activation & Rules</a></li>
-              <li role="presentation"><a href="#balance" role="tab" data-toggle="tab">FAQ</a></li>
+              <li role="presentation"><a href="#rules" role="tab" data-toggle="tab">Activation & Rules</a></li>
+              <li role="presentation"><a href="#faq" role="tab" data-toggle="tab">FAQ</a></li>
             </ul>
           </div>
         </div>
@@ -78,41 +78,63 @@
               </div>
               <div class="app-service__pres-features">
                 <div class="app-service__pres-features--inner">
-                  <ul class="list-unstyled">
-                    <li v-for="feature in featuresSections"><i class="material-icons">checkmark</i><span>{{feature.content}}</span></li>
-                  </ul>
+                  <table>
+                    <thead>
+                      <th></th>
+                      <th></th>
+                    </thead>
+                    <tbody class="app-service__features">
+                      <tr class="app-service__feature" v-for="feature in featuresSections">
+                        <td class="text-center"><i class="material-icons">done</i></td>
+                        <td>{{feature.content}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-              </div>
-              <div class="carousel slide" id="related-devices" data-ride="carousel">
+              </div><br>
+              <div class="carousel slide" id="related-devices" data-ride="carousel" v-if="devices.length &gt; 0">
                 <!-- Wrapper for slides-->
+                <h3 class="text-center">Associable devices</h3>
                 <div class="carousel-inner" role="listbox">
                   <div class="item active">
                     <div class="row">
-                      <div class="col-md-4 col-sm-4 col-xs-4" v-for="subdevice in devices[0]">
-                        <div class="app-service__carousel"><img v-bind:src="subdevice.img[0]" alt="...">
+                      <div class="col-md-4 col-sm-4 col-xs-12" v-for="subdevice in devices[0]"><a class="app-service__carousel" v-bind:href="'/device.html#'+subdevice.id"><img v-bind:src="subdevice.img[0]" alt="...">
                           <h4>{{subdevice.brand}}</h4>
-                          <h4>{{subdevice.name}}</h4>
-                        </div>
-                      </div>
+                          <h4>{{subdevice.name}}</h4></a></div>
                     </div>
                   </div>
                   <div class="item" v-for="(index,device) in devices" v-if="index!==0">
                     <div class="row">
-                      <div class="col-md-4 col-sm-4 col-xs-4" v-for="subdevice in device">
-                        <div class="app-service__carousel"><img v-bind:src="subdevice.img[0]" alt="...">
+                      <div class="col-md-4 col-sm-4 col-xs-12" v-for="subdevice in device"><a class="app-service__carousel" v-bind:href="'/device.html#'+subdevice.id"><img v-bind:src="subdevice.img[0]" alt="...">
                           <h4>{{subdevice.brand}}</h4>
-                          <h4>{{subdevice.name}}</h4>
-                        </div>
-                      </div>
+                          <h4>{{subdevice.name}}</h4></a></div>
                     </div>
                   </div>
                 </div>
                 <!-- Controls--><a class="left carousel-control" href="#related-devices" role="button" data-slide="prev"><i class="material-icons" aria-hidden="true">chevron_left</i><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#related-devices" role="button" data-slide="next"><i class="material-icons" aria-hidden="true">chevron_right</i><span class="sr-only">Next</span></a>
                 <ol class="carousel-indicators">
                   <li class="active" data-target="#related-devices" data-slide-to="0"></li>
-                  <li data-target="#related-devices" data-slide-to="1"></li>
-                  <li data-target="#related-devices" data-slide-to="2"></li>
+                  <li data-target="#related-devices" data-slide-to="{{index}}" v-for="(index,bullet) in devices" v-if="index!==0"></li>
                 </ol>
+              </div>
+            </div>
+          </div>
+          <div class="row tab-pane fade" id="rules" role="tabpanel">
+            <div class="col-md-12">
+              <div class="app-service__rules">
+                <p v-for="rule in ruleSections">{{rule.content}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row tab-pane" id="faq" role="tabpanel">
+            <div class="col-md-12">
+              <div class="app-service__faq">
+                <ul class="list-unstyled">
+                  <li v-for="faq in faqSections">
+                    <h5>{{faq.title}}</h5>
+                    <p>{{faq.content}}</p>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
