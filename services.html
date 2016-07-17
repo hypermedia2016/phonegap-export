@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12">
             <ul class="list-inline list-unstyled" id="head-menui">
-                  <li><a href="who-we-are.html">Who we are </a></li>
+                  <li><a href="who-we-are.html">Who we are</a></li>
                   <li><a href="the-group.html">The group</a></li>
             </ul>
           </div>
@@ -26,8 +26,10 @@
     <!--main menu--><br>
     <nav class="navbar top-middle-nav">
       <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a></div>
-        <div class="collapse navbar-collapse">
+        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a>
+          <button class="navbar-toggle collapsed app-header_hamburger-menu" data-toggle="collapse" data-target="#indexNavigation"><i class="material-icons">menu</i></button>
+        </div>
+        <div class="collapse navbar-collapse" id="indexNavigation">
           <ul class="nav navbar-nav">
                 <li><a href="devices.html">Devices</a></li>
                 <li class="selected"><a href="services.html">Smart life services</a></li>
@@ -36,7 +38,6 @@
         </div>
       </div>
     </nav>
-    <!--location menu-->
     <nav class="container">
       <div class="row">
         <div class="col-md-12">
@@ -48,17 +49,23 @@
     </nav>
     <services inline-template v-bind:locations.sync="locations">
       <div class="container">
-        <!--sub menu-->
+        <!--sub menu.row
+        -->
         <ul class="nav nav-tabs app-home__principal-links app-devices-nav" id="sub">
-          <li class="app-home__principal-link" v-for="type in types"><a class="app-home__principal-link--img-link" v-bind:href="type.url" data-toggle="tab"><img class="app-home__principal-link--img" v-bind:src="type.img"><span class="app-home__principal-link--text">{{type.name}}</span></a></li>
+          <li class="app-home__principal-link app-home__principal-link--special" v-for="type in types"><a class="row app-home__principal-link--img-link" v-bind:href="type.url" data-toggle="tab">
+              <div class="col-md-8 col-sm-8 col-xs-6 col-md-offset-2 col-sm-offset-2 col-xs-offset-0"><img class="app-home__principal-link--img" v-bind:src="type.img"></div>
+              <div class="col-md-8 col-sm-8 col-xs-6 col-md-offset-2 col-sm-offset-2 col-xs-offset-0"><span class="app-home__principal-link--text" style="padding:0">{{type.name}}</span></div></a></li>
         </ul>
         <div class="error">{{ error }}</div>
         <div class="tab-content">
           <div class="tab-pane fade" v-bind:id="escapeName(type.name)" v-for="type in types">
-            <div class="services">
-              <ul>
-                <li v-for="service in services"><a v-bind:href="'service.html#'+service.id">{{service.name}} {{service.short_description}}<img v-bind:src="service.img"/></a></li>
-              </ul>
+            <div class="row services" v-for="service in services">
+              <div class="col-md-12" style="position:relative"><img v-bind:src="service.img" width="100%"/>
+                <div class="app-services__text text-center" v-bind:class="{'app-services__text--centered' : (service.img_tag==='2'), 'app-services__text--right':(service.img_tag==='3')}">
+                  <h2>{{service.name}}</h2>
+                  <p>{{service.short_description}}</p><a class="app-button app-button--big" v-bind:href="'service.html#'+service.id">Discover</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

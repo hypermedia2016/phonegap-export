@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12">
             <ul class="list-inline list-unstyled" id="head-menui">
-                  <li><a href="who-we-are.html">Who we are </a></li>
+                  <li><a href="who-we-are.html">Who we are</a></li>
                   <li><a href="the-group.html">The group</a></li>
             </ul>
           </div>
@@ -26,8 +26,10 @@
     <!--main menu--><br>
     <nav class="navbar top-middle-nav">
       <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a></div>
-        <div class="collapse navbar-collapse">
+        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a>
+          <button class="navbar-toggle collapsed app-header_hamburger-menu" data-toggle="collapse" data-target="#indexNavigation"><i class="material-icons">menu</i></button>
+        </div>
+        <div class="collapse navbar-collapse" id="indexNavigation">
           <ul class="nav navbar-nav">
                 <li><a href="devices.html">Devices</a></li>
                 <li class="selected"><a href="services.html">Smart life services</a></li>
@@ -36,10 +38,86 @@
         </div>
       </div>
     </nav>
-    <!--location menu-->
+    <nav class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="list-unstyled list-inline app-breadcrumb">
+            <li class="app-breadcrumb__item" v-for="(index,location) in locations"><a class="app-breadcrumb__text" v-bind:href="location.url" v-if:="location.name === 'HOME'"><i class="material-icons app-breadcrumb__separator">home</i></a><a class="app-breadcrumb__text" v-bind:href="location.url" v-if:="location.name !== 'HOME'">{{location.name}}</a><i class="material-icons app-breadcrumb__separator" v-show="index !== locations.length - 1">chevron_right</i></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <service inline-template v-bind:locations.sync="locations">
       <div class="error">{{ error }}</div>
-      <p>device info {{parsedData.name}}</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12"><img class="app-service__img" v-bind:src="'img/dynamic/'+parsedData.img">
+            <div class="app-service__head text-center">
+              <h2>{{parsedData.name}}</h2>
+              <p>{{parsedData.short_description}}</p>
+              <h2 class="red-colored">{{parsedData.price}}&nbsp;&euro;&nbsp;/&nbsp;month</h2>
+              <button class="app-button app-button--big">SUBSCRIBE</button>
+            </div>
+          </div>
+        </div><br><br>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <ul class="list-unstyled list-inline app-device__content-nav app-investors__nav" role="tab-list">
+              <li class="active" role="presentation"><a href="#presentation" role="tab" data-toggle="tab">Presentation</a></li>
+              <li role="presentation"><a href="#performance" role="tab" data-toggle="tab">Activation & Rules</a></li>
+              <li role="presentation"><a href="#balance" role="tab" data-toggle="tab">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-content">
+          <div class="row tab-pane active fade in" id="presentation" role="tabpanel">
+            <div class="col-md-12">
+              <div class="app-service__pres-text text-center">
+                <h2>Discover {{parsedData.name}}</h2>
+                <p>{{parsedData.full_description}}</p>
+              </div>
+              <div class="app-service__pres-features">
+                <div class="app-service__pres-features--inner">
+                  <ul class="list-unstyled">
+                    <li v-for="feature in featuresSections"><i class="material-icons">checkmark</i><span>{{feature.content}}</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="carousel slide" id="related-devices" data-ride="carousel">
+                <!-- Wrapper for slides-->
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4 col-xs-4" v-for="subdevice in devices[0]">
+                        <div class="app-service__carousel"><img v-bind:src="subdevice.img[0]" alt="...">
+                          <h4>{{subdevice.brand}}</h4>
+                          <h4>{{subdevice.name}}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item" v-for="(index,device) in devices" v-if="index!==0">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4 col-xs-4" v-for="subdevice in device">
+                        <div class="app-service__carousel"><img v-bind:src="subdevice.img[0]" alt="...">
+                          <h4>{{subdevice.brand}}</h4>
+                          <h4>{{subdevice.name}}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Controls--><a class="left carousel-control" href="#related-devices" role="button" data-slide="prev"><i class="material-icons" aria-hidden="true">chevron_left</i><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#related-devices" role="button" data-slide="next"><i class="material-icons" aria-hidden="true">chevron_right</i><span class="sr-only">Next</span></a>
+                <ol class="carousel-indicators">
+                  <li class="active" data-target="#related-devices" data-slide-to="0"></li>
+                  <li data-target="#related-devices" data-slide-to="1"></li>
+                  <li data-target="#related-devices" data-slide-to="2"></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </service>
     <!-- javascript--><br><br>
     <script src="js/app.js"></script>

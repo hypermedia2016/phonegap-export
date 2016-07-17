@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12">
             <ul class="list-inline list-unstyled" id="head-menui">
-                  <li><a href="who-we-are.html">Who we are </a></li>
+                  <li><a href="who-we-are.html">Who we are</a></li>
                   <li><a href="the-group.html">The group</a></li>
             </ul>
           </div>
@@ -26,8 +26,10 @@
     <!--main menu--><br>
     <nav class="navbar top-middle-nav">
       <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a></div>
-        <div class="collapse navbar-collapse">
+        <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="img/static/app-logo.jpeg" alt="Verizon"></a>
+          <button class="navbar-toggle collapsed app-header_hamburger-menu" data-toggle="collapse" data-target="#indexNavigation"><i class="material-icons">menu</i></button>
+        </div>
+        <div class="collapse navbar-collapse" id="indexNavigation">
           <ul class="nav navbar-nav">
                 <li class="selected"><a href="devices.html">Devices</a></li>
                 <li><a href="services.html">Smart life services</a></li>
@@ -36,7 +38,6 @@
         </div>
       </div>
     </nav>
-    <!--location menu-->
     <nav class="container">
       <div class="row">
         <div class="col-md-12">
@@ -50,34 +51,51 @@
       <div class="error">{{ error }}</div>
       <div class="container">
         <div class="row">
-          <div class="col-md-6 text-right"><img class="app-device__head-img" v-bind:src="parsedData.img[0]">
+          <div class="col-md-6 text-right col-sm-6 col-xs-12"><img class="app-device__head-img" v-bind:src="parsedData.img[0]">
             <ul class="list-unstyled list-inline app-device__head-miniatures text-center">
               <li><img v-bind:src="parsedData.img[0]"></li>
               <li><img v-bind:src="parsedData.img[1]"></li>
             </ul>
           </div>
-          <div class="col-md-6">
-            <h4>{{parsedData.brand}}</h4>
-            <h3>{{parsedData.name}}</h3>
-            <p class="app-device__head-desc">{{parsedData.short_description}}</p>
-            <ul class="list-unstyled list-inline">
-              <li>
-                <h3 class="app-device__head-price">{{parsedData.price}} &euro;</h3>
-              </li>
-              <li class="app-device__head-colors">
-                <ul class="list-unstyled list-inline">
-                  <li v-for="color in parsedData.colors"><span v-bind:style="'background-color:'+color+'; width: 20px; height:20px; display: block'">&nbsp;</span></li>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-6">
+                <h4>{{parsedData.brand}}</h4>
+                <h3>{{parsedData.name}}</h3>
+                <p class="app-device__head-desc">{{parsedData.short_description}}</p>
+                <ul class="list-unstyled list-inline hidden-xsmall">
+                  <li>
+                    <h3 class="app-device__head-price">{{parsedData.price}} &euro;</h3>
+                  </li>
+                  <li class="app-device__head-colors">
+                    <ul class="list-unstyled list-inline">
+                      <li v-for="color in parsedData.colors"><span v-bind:style="'background-color:'+color+'; width: 20px; height:20px; display: block'">&nbsp;</span></li>
+                    </ul>
+                  </li>
                 </ul>
-              </li>
-            </ul>
-            <button class="app-button app-button--big">BUY</button>
-            <div class="app-device__head-links">
-              <h5>Smartlife services</h5>
-              <p data-toggle="modal" data-target="#smartlife"><i class="material-icons">chevron_right</i>Discover addable smartlife services</p>
-            </div>
-            <div class="app-device__head-links">
-              <h5>Assistance</h5>
-              <p data-toggle="modal" data-target="#assistance"><i class="material-icons">chevron_right</i>Get assistance for this device</p>
+                <button class="app-button app-button--big hidden-xs">BUY</button>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-6">
+                <div class="app-device__head-links">
+                  <h5>Smartlife services</h5>
+                  <p data-toggle="modal" data-target="#smartlife"><i class="material-icons">chevron_right</i>Discover addable smartlife services</p>
+                </div>
+                <div class="app-device__head-links">
+                  <h5>Assistance</h5>
+                  <p data-toggle="modal" data-target="#assistance"><i class="material-icons">chevron_right</i>Get assistance for this device</p>
+                </div>
+                <ul class="list-unstyled list-inline hidden-small" style="margin-top:5px">
+                  <li>
+                    <h3 class="app-device__head-price">{{parsedData.price}} &euro;</h3>
+                  </li>
+                  <li class="app-device__head-colors">
+                    <ul class="list-unstyled list-inline">
+                      <li v-for="color in parsedData.colors"><span v-bind:style="'background-color:'+color+'; width: 20px; height:20px; display: block; border:1px solid rgba(0,0,0,.2)'">&nbsp;</span></li>
+                    </ul>
+                  </li>
+                </ul>
+                <button class="app-button app-button--big hidden-small">BUY</button>
+              </div>
             </div>
           </div>
         </div><br><br><br><br>
@@ -93,14 +111,14 @@
           <div class="row tab-pane active fade in" id="presentation" role="tabpanel">
             <div class="col-md-12">
               <div class="row" v-for="(index,section) in presentationSections" v-bind:class="{'app-device__section': true, 'app-device__section--type-one':index===1, 'app-device__section--type-two':index===2}">
-                <div class="col-md-6 text-center" v-if="index===0 || index ===2"><img class="app-device__section-img" v-bind:src="section.image"></div>
-                <div class="col-md-6" v-bind:class="{'text-right':index===1}">
+                <div class="col-md-6 col-sm-6 col-xs-12 text-center" v-if="index===0 || index ===2"><img class="app-device__section-img" v-bind:src="section.image"></div>
+                <div class="col-md-6 col-sm-6 col-xs-12" v-bind:class="{'text-right':index===1}">
                   <div class="app-device__section-text">
                     <h2>{{section.title}}</h2>
                     <p>{{section.content}}</p>
                   </div>
                 </div>
-                <div class="col-md-6 text-center" v-if="index===1"><img class="app-device__section-img" v-bind:src="section.image"></div>
+                <div class="col-md-6 col-sm-6 col-xs-12 text-center" v-if="index===1"><img class="app-device__section-img" v-bind:src="section.image"></div>
               </div>
             </div>
           </div>
